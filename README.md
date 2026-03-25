@@ -1,60 +1,60 @@
-# Sports Calendar Database
+# Sports Calendar Web Application
 
-## Description
+## Overview
+This project is a **sports event calendar** web application built with **Python (Flask)** and **MySQL**. It allows users to view sports events, see event details, and add new events to the database. The application uses a structured database to manage sports, leagues, seasons, teams, venues, referees, and event results.
 
-This project implements a relational database for managing a sports event calendar.
-It stores information about sports, leagues, seasons, teams, venues, events, results and referees.
+---
 
 ## Features
 
-* Supports multiple sports (e.g., football, ice hockey)
-* Tracks leagues across different seasons
-* Stores teams and their participation per season
-* Records events (matches) with date and time
-* Tracks match results (scores and outcomes)
-* Assigns referees to events
-* Fully normalized (3NF)
+### Backend
+- **Built with Flask (Python)**.
+- Connects to a **MySQL database** (`sports_calendar`).
+- Provides endpoints to:
+  - Retrieve **all events** efficiently using SQL JOINs.
+  - Retrieve **single event details**.
+  - **Add new events** with participating teams.
 
-## Database Structure
+### Frontend
+- **HTML templates** display events in a user-friendly format.
+- Navigation bar for easy browsing.
+- Event list shows:
+  - Date and time
+  - Sport
+  - Teams / Participants
+- Event detail page for single event information.
+- Basic **CSS styling** for readability.
 
-Main entities:
+### Database
+- **Tables**:
+  - `Sport`, `League`, `Season`, `LeagueSeason`
+  - `Team`, `TeamSeason`, `Venue`
+  - `Event`, `EventParticipant`, `EventResult`
+  - `Referee`, `EventReferee`
+- Normalized for **third normal form (3NF)**.
+- Relationships support:
+  - Multiple teams per event
+  - Multiple referees per event
+  - Event results per team
+- Sample data included in `data.sql`.
 
-* Sport
-* League
-* Season
-* LeagueSeason
-* Team
-* TeamSeason
-* Event
-* EventParticipant
-* EventResult
-* Venue
-* Referee
-* EventReferee
+---
 
-## How to Run
+## Project Structure
 
-### 1. Start XAMPP
-
-Start Apache and MySQL.
-
-### 2. Create Database
-
-```sql
-CREATE DATABASE sports_calendar;
-USE sports_calendar;
-```
-
-### 3. Import Schema
-
-```bash
-mysql -u root sports_calendar < schema.sql
-```
-
-### 4. Import Sample Data
-
-```bash
-mysql -u root sports_calendar < data.sql
-```
-
-
+```plaintext
+sports_calendar/
+│
+├── app.py                  # Flask backend
+├── schema.sql              # Database structure (CREATE TABLEs)
+├── data.sql                # Sample data (INSERT statements)
+├── README.md               # This documentation
+│
+├── templates/              # HTML templates
+│   ├── index.html          # List of all events
+│   └── event.html          # Single event details
+│
+├── static/                 # CSS / static assets
+│   └── style.css           # Basic styling
+│
+└── .gitignore              # Ignore unnecessary files

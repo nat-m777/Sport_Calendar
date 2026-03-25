@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Event Details</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<h1>Event Details</h1>
+
+{% if event %}
+    <p><strong>Date:</strong> {{ event.event_date }}</p>
+    <p><strong>Time:</strong> {{ event.event_time }}</p>
+    <p><strong>Sport:</strong> {{ event.sport }}</p>
+    <p><strong>Match:</strong> {{ event.home_team }} vs {{ event.away_team }}</p>
+{% else %}
+    <p>Event not found</p>
+{% endif %}
+
+<a href="/">Back</a>
+
+</body>
+</html>

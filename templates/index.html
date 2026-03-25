@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sports Calendar</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<nav>
+    <h2>Sports Calendar</h2>
+    <div>
+        <a href="#">Home</a>
+        <a href="#">Events</a>
+        <a href="#">Teams</a>
+    </div>
+</nav>
+
+<h1>All Events</h1>
+
+<ul class="events">
+    {% for event in events %}
+        <li>
+            <a href="/event/{{ event.event_id }}">
+                {{ event.event_date }} | {{ event.event_time }} |
+                {{ event.sport }} |
+                <strong>{{ event.home_team }} vs {{ event.away_team }}</strong>
+            </a>
+        </li>
+    {% endfor %}
+</ul>
+
+<h2>Add Event</h2>
+
+<form method="POST" action="/add">
+    <input type="date" name="date" required>
+    <input type="time" name="time" required>
+    <input type="number" name="league_season_id" placeholder="LeagueSeason ID" required>
+    <input type="number" name="venue_id" placeholder="Venue ID" required>
+    <input type="number" name="home_team" placeholder="Home Team ID" required>
+    <input type="number" name="away_team" placeholder="Away Team ID" required>
+    <button type="submit">Add</button>
+</form>
+
+</body>
+</html>
